@@ -84,7 +84,7 @@
                 <dx:PivotGridField Area="RowArea" AreaIndex="0" FieldName="OrderDate" ID="fieldYear"
                     Caption="Year" GroupInterval="DateYear" UnboundFieldName="fieldOrderDate" />
                 <dx:PivotGridField ID="fieldMonth" Area="RowArea" AreaIndex="1" Caption="Month" FieldName="OrderDate"
-                    GroupInterval="DateMonth" Name="fieldMonth">
+                    GroupInterval="DateMonth">
                 </dx:PivotGridField>
                 <dx:PivotGridField Area="ColumnArea" AreaIndex="0" FieldName="ProductName" ID="fieldProductName"
                     Caption="Product Name" />
