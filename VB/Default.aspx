@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="true" CodeFile="Default.aspx.vb" Inherits="_Default" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v17.2, Version=17.2.18.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
 
-<%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.18.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <!DOCTYPE html>
 
@@ -74,22 +74,40 @@
     <form id="form1" runat="server">
         <dx:ASPxCheckBox ID="chColorAll" runat="server" Text="Color all corresponding data cells" ClientInstanceName="chColorAll"></dx:ASPxCheckBox>
         <dx:ASPxPivotGrid ID="pivotGrid" runat="server" ClientIDMode="AutoID" DataSourceID="sds"
-            OnHtmlCellPrepared="pivotGrid_HtmlCellPrepared" OnHtmlFieldValuePrepared="pivotGrid_HtmlFieldValuePrepared">
+            OptionsData-DataProcessingEngine="Optimized"
+            OnHtmlCellPrepared="pivotGrid_HtmlCellPrepared" OnHtmlFieldValuePrepared="pivotGrid_HtmlFieldValuePrepared" IsMaterialDesign="False">
             <OptionsView HorizontalScrollBarMode="Auto" />
             <OptionsFilter NativeCheckBoxes="False" />
             <OptionsPager RowsPerPage="50"></OptionsPager>
             <Fields>
-                <dx:PivotGridField Area="DataArea" AreaIndex="0" FieldName="ExtendedPrice" ID="fieldExtendedPrice"
-                    Caption="Extended Price" />
-                <dx:PivotGridField Area="RowArea" AreaIndex="0" FieldName="OrderDate" ID="fieldYear"
-                    Caption="Year" GroupInterval="DateYear" UnboundFieldName="fieldOrderDate" />
-                <dx:PivotGridField ID="fieldMonth" Area="RowArea" AreaIndex="1" Caption="Month" FieldName="OrderDate"
-                    GroupInterval="DateMonth">
+                <dx:PivotGridField Area="DataArea" AreaIndex="0" ID="fieldExtendedPrice1"
+                    Caption="Extended Price" >
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="ExtendedPrice" />
+                    </DataBindingSerializable>
                 </dx:PivotGridField>
-                <dx:PivotGridField Area="ColumnArea" AreaIndex="0" FieldName="ProductName" ID="fieldProductName"
-                    Caption="Product Name" />
+                <dx:PivotGridField Area="RowArea" AreaIndex="0" ID="fieldYear"
+                    Caption="Year" GroupInterval="DateYear" >
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateYear" />
+                    </DataBindingSerializable>
+                </dx:PivotGridField>
+                <dx:PivotGridField ID="fieldMonth" Area="RowArea" AreaIndex="1" Caption="Month"
+                    GroupInterval="DateMonth">
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="OrderDate" GroupInterval="DateMonth" />
+                    </DataBindingSerializable>
+                </dx:PivotGridField>
+                <dx:PivotGridField Area="ColumnArea" AreaIndex="0" ID="fieldProductName1"
+                    Caption="Product Name" >
+                    <DataBindingSerializable>
+                        <dx:DataSourceColumnBinding ColumnName="ProductName" />
+                    </DataBindingSerializable>
+                </dx:PivotGridField>
             </Fields>
             <ClientSideEvents Init="OnInit" EndCallback="OnEndCallback" />
+
+<OptionsData DataProcessingEngine="Optimized"></OptionsData>
         </dx:ASPxPivotGrid>
         <asp:SqlDataSource ID="sds" runat="server" ConnectionString="<%$ ConnectionStrings:NorthWindConnectionString %>" SelectCommand="SELECT * FROM [Invoices]"></asp:SqlDataSource>
     </form>
