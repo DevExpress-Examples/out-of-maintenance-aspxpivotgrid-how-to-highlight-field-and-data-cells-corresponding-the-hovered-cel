@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v21.2, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPivotGrid" TagPrefix="dx" %>
 
-<%@ Register Assembly="DevExpress.Web.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v21.2, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <!DOCTYPE html>
 
@@ -81,7 +81,7 @@
             <OptionsPager RowsPerPage="50"></OptionsPager>
             <Fields>
                 <dx:PivotGridField Area="DataArea" AreaIndex="0" ID="fieldExtendedPrice1"
-                    Caption="Extended Price" Name="fieldExtendedPrice1" >
+                    Caption="Extended Price" >
                     <DataBindingSerializable>
                         <dx:DataSourceColumnBinding ColumnName="ExtendedPrice" />
                     </DataBindingSerializable>
@@ -99,7 +99,7 @@
                     </DataBindingSerializable>
                 </dx:PivotGridField>
                 <dx:PivotGridField Area="ColumnArea" AreaIndex="0" ID="fieldProductName1"
-                    Caption="Product Name" Name="fieldProductName1" >
+                    Caption="Product Name" >
                     <DataBindingSerializable>
                         <dx:DataSourceColumnBinding ColumnName="ProductName" />
                     </DataBindingSerializable>
