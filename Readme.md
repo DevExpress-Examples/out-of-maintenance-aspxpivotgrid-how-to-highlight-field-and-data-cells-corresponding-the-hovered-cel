@@ -54,7 +54,8 @@ function OnEndCallback(s, e) {
     HoverProcessing(s.GetMainElement());
 }
 ```
-4. The **HoverProcessing** function determines the hovered cell's column and row index and applies the corresponding CSS class to the required data and field cells (see [Default.aspx](./CS/WebSite/Default.aspx#L31-L69)).
+4. The **HoverProcessing** function determines the hovered cell's column and row index and applies the corresponding CSS class to the data and field cells (see [Default.aspx](./CS/WebSite/Default.aspx#L31-L69)).
+
 
 ## Files to Look At
 * [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
