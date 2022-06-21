@@ -7,9 +7,11 @@
 **[[Run Online]](https://codecentral.devexpress.com/t621056/)**
 <!-- run online end -->
 This example illustrates how to highlight field and data cells corresponding to the hovered cell.
+
 ![Pivot Grid for Web Forms - Hightlighting data cells](media/7c770969-ded8-4eaa-9ec8-f052f7dd136a.png)
 
 Ckick on the checkbox to highlight the corresponding cells:
+
 ![Pivot Grid for Web Forms - Hightlighting all corresponding data cells](media/7d663a5d-2701-411f-88ca-3d07da9f1eda.png)
 
 ## Overview
