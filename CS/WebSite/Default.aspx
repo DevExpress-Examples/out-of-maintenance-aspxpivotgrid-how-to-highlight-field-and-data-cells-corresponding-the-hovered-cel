@@ -109,7 +109,9 @@
 
 <OptionsData DataProcessingEngine="Optimized"></OptionsData>
         </dx:ASPxPivotGrid>
-        <asp:SqlDataSource ID="sds" runat="server" ConnectionString="<%$ ConnectionStrings:NorthWindConnectionString %>" SelectCommand="SELECT * FROM [Invoices]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="sds" runat="server"
+            ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"  SelectCommand="SELECT * FROM [Invoices]"></asp:SqlDataSource>
     </form>
 </body>
 </html>

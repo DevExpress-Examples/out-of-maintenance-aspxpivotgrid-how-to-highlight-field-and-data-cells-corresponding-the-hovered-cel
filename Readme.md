@@ -1,34 +1,37 @@
 <!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128577034/21.2.3%2B)
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T621056)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
+# Pivot Grid for Web Forms - How to Highlight Field and Data Cells that Correspond to the Hovered Cell
 
-* [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
-* [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/WebSite/Default.aspx.vb))
-<!-- default file list end -->
-# ASPxPivotGrid - How to highlight field and data cells corresponding the hovered cell
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/t621056/)**
 <!-- run online end -->
+This example illustrates how to highlight fields and data cells that correspond to the hovered cell.
 
 
-<p>ASPxPivotGrid - How to highlight field and data cells corresponding the hovered cell<br><br>This example illustrates how to highlight field and data cells corresponding to the hovered cell:<br><img src="https://raw.githubusercontent.com/DevExpress-Examples/aspxpivotgrid-how-to-highlight-field-and-data-cells-corresponding-the-hovered-cell-t621056/17.2.7+/media/7c770969-ded8-4eaa-9ec8-f052f7dd136a.png"> <br><img src="https://raw.githubusercontent.com/DevExpress-Examples/aspxpivotgrid-how-to-highlight-field-and-data-cells-corresponding-the-hovered-cell-t621056/17.2.7+/media/7d663a5d-2701-411f-88ca-3d07da9f1eda.png"><br>Since ASPxPivotGrid does not support this scenario out of the box, the only possible way is implementing this task using jQuery. </p>
+![Pivot Grid for Web Forms - Hightlighting data cells](media/7c770969-ded8-4eaa-9ec8-f052f7dd136a.png)
+
+Click on the checkbox to highlight the corresponding cells:
+
+![Pivot Grid for Web Forms - Hightlighting all corresponding data cells](media/7d663a5d-2701-411f-88ca-3d07da9f1eda.png)
+
+## Overview
+
+You cannot highlight cells that correspond to the hovered cell in [ASPxPivotGrid](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid) out of the box. The example shows how to use  [jQuery](https://jquery.com/) to implement this functionality.
 
 
-<h3>Description</h3>
-
-<p>To implement this approach, perform the following steps:<br>Handle the&nbsp;<a href="https://documentation.devexpress.com/#AspNet/DevExpressWebASPxPivotGridASPxPivotGrid_HtmlCellPreparedtopic">ASPxPivotGrid.HtmlCellPrepared</a>&nbsp;event to add CSS classes that contain rows and column indexes to data cells:</p>
-<code lang="cs">protected void pivotGrid_HtmlCellPrepared(object sender, DevExpress.Web.ASPxPivotGrid.PivotHtmlCellPreparedEventArgs e)
+1. Handle the [`ASPxPivotGrid.HtmlCellPrepared`](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid.HtmlCellPrepared) event to add CSS classes that contain rows and column indexes to data cells:
+```csharp
+protected void pivotGrid_HtmlCellPrepared(object sender, DevExpress.Web.ASPxPivotGrid.PivotHtmlCellPreparedEventArgs e)
 {
     e.Cell.CssClass += " hoverHelperRow_" + e.RowIndex;
     e.Cell.CssClass += " hoverHelperColumn_" + e.ColumnIndex;
 }
-</code>
-<p>&nbsp;Then, handle the&nbsp;<a href="https://documentation.devexpress.com/#AspNet/DevExpressWebASPxPivotGridASPxPivotGrid_HtmlFieldValuePreparedtopic">ASPxPivotGrid.HtmlFieldValuePrepared</a>&nbsp;event to add similar classes to field cells:</p>
-<code lang="cs">protected void pivotGrid_HtmlFieldValuePrepared(object sender, DevExpress.Web.ASPxPivotGrid.PivotHtmlFieldValuePreparedEventArgs e)
+```
+2. Handle the [`ASPxPivotGrid.HtmlFieldValuePrepared`](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid.HtmlFieldValuePrepared) event to add similar CSS classes to field cells:
+```csharp
+protected void pivotGrid_HtmlFieldValuePrepared(object sender, DevExpress.Web.ASPxPivotGrid.PivotHtmlFieldValuePreparedEventArgs e)
 {
     if (e.Field == null)
         return;
@@ -41,56 +44,19 @@
     if (e.Field.Area == DevExpress.XtraPivotGrid.PivotArea.ColumnArea)
         e.Cell.CssClass += " hoverHelperColumn_" + e.MinIndex + "_Field";
 }
-</code>
-<p>&nbsp;Handle the client-side&nbsp;<a href="https://documentation.devexpress.com/#AspNet/DevExpressWebScriptsASPxClientControlBase_Inittopic">Init</a>&nbsp;and&nbsp;<a href="https://documentation.devexpress.com/#AspNet/DevExpressWebASPxPivotGridScriptsASPxClientPivotGrid_EndCallbacktopic">EndCallback</a>&nbsp;for your pivot grid:</p>
-<code lang="js">function OnInit(s, e) {
+```
+3. Handle the client-side [`Init`](https://docs.devexpress.com/AspNet/js-ASPxClientControlBase.Init) and [`EndCallback`](https://docs.devexpress.com/AspNet/js-ASPxClientPivotGrid.EndCallback) events for the Pivot Grid:
+```js
+function OnInit(s, e) {
     HoverProcessing(s.GetMainElement());
 }
 function OnEndCallback(s, e) {
     HoverProcessing(s.GetMainElement());
 }
-</code>
-<p>&nbsp;The&nbsp;<strong>HoverProcessing</strong> function will determine the hovered cell column and row index and apply the corresponding CSS class to the required data and field cells:</p>
-<code lang="js">function HoverProcessing(controlHtmlElement) {
-	var cellElement = $(controlHtmlElement).find("td[class*='hoverHelper']");
-	cellElement.hover(function () { ProcessHoveredCell(this, true); });
-	cellElement.mouseout(function () { ProcessHoveredCell(this, false); });
-}
- function ProcessHoveredCell(cell, isHover) {
-	var colorAllCells = chColorAll.GetValue();
-	var arrayOfClasses = $(cell).attr('class').split(' ');
-	var rowClass;
-	var colClass;
-	for (var i = 0; i &lt; arrayOfClasses.length; i++) {
-		if (arrayOfClasses[i].indexOf("hoverHelperRow") &gt;= 0)
-			rowClass = arrayOfClasses[i];
-		if (arrayOfClasses[i].indexOf("hoverHelperColumn") &gt;= 0)
-			colClass = arrayOfClasses[i];
-	}
- 	if (isHover) {
-		if (colorAllCells) {
-			$("." + rowClass).addClass("hoveredBg");
-			$("." + colClass).addClass("hoveredBg");
-		}
-		else
-			$(cell).addClass("hoveredBg");
-		$("." + rowClass + "_Field").addClass("hoveredBgField");
-		$("." + colClass + "_Field").addClass("hoveredBgField");
-	}
-	else {
-		if (colorAllCells) {
-			$("." + rowClass).removeClass("hoveredBg");
-			$("." + colClass).removeClass("hoveredBg");
-		}
-		else
-			$(cell).removeClass("hoveredBg");
-		$("." + rowClass + "_Field").removeClass("hoveredBgField");
-		$("." + colClass + "_Field").removeClass("hoveredBgField");
-	}
-}
-</code>
-<p>&nbsp;</p>
-
-<br/>
+```
+4. The **HoverProcessing** function determines the hovered cell's column and row index and applies the corresponding CSS class to the data and field cells (see [Default.aspx](./CS/WebSite/Default.aspx#L31-L69)).
 
 
+## Files to Look At
+* [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
+* [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/WebSite/Default.aspx.vb))
