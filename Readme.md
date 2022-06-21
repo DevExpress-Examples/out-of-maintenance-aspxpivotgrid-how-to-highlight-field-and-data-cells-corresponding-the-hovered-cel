@@ -2,11 +2,13 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T621056)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-# Pivot Grid for Web Forms - How to highlight field and data cells corresponding the hovered cell
+# Pivot Grid for Web Forms - How to Highlight Field and Data Cells that Correspond to the Hovered Cell
+
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/t621056/)**
 <!-- run online end -->
-This example illustrates how to highlight field and data cells corresponding to the hovered cell.
+This example illustrates how to highlight field and data cells that correspond to the hovered cell.
+
 
 ![Pivot Grid for Web Forms - Hightlighting data cells](media/7c770969-ded8-4eaa-9ec8-f052f7dd136a.png)
 
@@ -16,9 +18,11 @@ Ckick on the checkbox to highlight the corresponding cells:
 
 ## Overview
 
-[ASPxPivotGrid](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid) does not support this functionality out of the box. It is possible to implement such functionality using [jQuery](https://jquery.com/).
+You cannot highlight cells that correspond to the hovered cell in [ASPxPivotGrid](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid) out of the box. The example shows how to use  [jQuery](https://jquery.com/) to implement this functionality.
 
-To do it, follow the steps below:
+
+
+
 1. Handle the [`ASPxPivotGrid.HtmlCellPrepared`](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid.HtmlCellPrepared) event to add CSS classes that contain rows and column indexes to data cells:
 ```csharp
 protected void pivotGrid_HtmlCellPrepared(object sender, DevExpress.Web.ASPxPivotGrid.PivotHtmlCellPreparedEventArgs e)
