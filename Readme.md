@@ -7,20 +7,18 @@
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/t621056/)**
 <!-- run online end -->
-This example illustrates how to highlight field and data cells that correspond to the hovered cell.
+This example illustrates how to highlight fields and data cells that correspond to the hovered cell.
 
 
 ![Pivot Grid for Web Forms - Hightlighting data cells](media/7c770969-ded8-4eaa-9ec8-f052f7dd136a.png)
 
-Ckick on the checkbox to highlight the corresponding cells:
+Click on the checkbox to highlight the corresponding cells:
 
 ![Pivot Grid for Web Forms - Hightlighting all corresponding data cells](media/7d663a5d-2701-411f-88ca-3d07da9f1eda.png)
 
 ## Overview
 
 You cannot highlight cells that correspond to the hovered cell in [ASPxPivotGrid](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid) out of the box. The example shows how to use  [jQuery](https://jquery.com/) to implement this functionality.
-
-
 
 
 1. Handle the [`ASPxPivotGrid.HtmlCellPrepared`](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxPivotGrid.ASPxPivotGrid.HtmlCellPrepared) event to add CSS classes that contain rows and column indexes to data cells:
