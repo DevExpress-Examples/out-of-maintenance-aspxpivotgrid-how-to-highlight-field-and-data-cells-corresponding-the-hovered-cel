@@ -1,8 +1,3 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128577034/17.2.7%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T621056)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-<!-- default badges end -->
 <!-- default file list -->
 *Files to look at*:
 
@@ -10,9 +5,6 @@
 * [Default.aspx.cs](./CS/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/Default.aspx.vb))
 <!-- default file list end -->
 # ASPxPivotGrid - How to highlight field and data cells corresponding the hovered cell
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/t621056/)**
-<!-- run online end -->
 
 
 <p>ASPxPivotGrid - How to highlight field and data cells corresponding the hovered cell<br><br>This example illustrates how to highlight field and data cells corresponding to the hovered cell:<br><img src="https://raw.githubusercontent.com/DevExpress-Examples/aspxpivotgrid-how-to-highlight-field-and-data-cells-corresponding-the-hovered-cell-t621056/17.2.7+/media/7c770969-ded8-4eaa-9ec8-f052f7dd136a.png"> <br><img src="https://raw.githubusercontent.com/DevExpress-Examples/aspxpivotgrid-how-to-highlight-field-and-data-cells-corresponding-the-hovered-cell-t621056/17.2.7+/media/7d663a5d-2701-411f-88ca-3d07da9f1eda.png"><br>Since ASPxPivotGrid does not support this scenario out of the box, the only possible way is implementing this task using jQuery. </p>
